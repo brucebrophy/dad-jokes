@@ -1,0 +1,26 @@
+{
+    "name": "brucebrophy/dad-jokes",
+    "description": "Create random dad jokes",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bruce Brophy",
+            "email": "bruce@brucebrophy.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Brucebrophy\\DadJokes\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Brucebrophy\\DadJokes\\Test\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    }
+}
