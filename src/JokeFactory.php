@@ -6,9 +6,9 @@ use GuzzleHttp\Client;
 
 class JokeFactory
 {
-	const API_ENDPOINT = 'https://icanhazdadjoke.com/';
+    const API_ENDPOINT = 'https://icanhazdadjoke.com/';
 
-	protected $client;
+    protected $client;
 
     public function __construct(Client $client = null)
     {
@@ -17,10 +17,10 @@ class JokeFactory
 
     public function random()
     {
-    	$response = $this->client->get(self::API_ENDPOINT);
+        $response = $this->client->get(self::API_ENDPOINT);
 
-    	$joke = json_decode($response->getBody()->getContents());
+        $joke = json_decode($response->getBody()->getContents());
 
-    	return $joke->joke;
+        return $joke->joke;
     }
 }
