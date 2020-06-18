@@ -2,23 +2,25 @@
 
 namespace Brucebrophy\DadJokes;
 
+use GuzzleHttp\Client;
+
 class JokeFactory
 {
-    protected $jokes = [
-        '6:30 is my favorite time of day, hands down.',
-        'I took up origami for a while, but I gave it up because it was too much paperwork.',
-        'I love my furniture. My recliner and I go way back.',
-    ];
+	const API_ENDPOINT = 'https://icanhazdadjoke.com/';
 
-    public function __construct(array $jokes = [])
+	protected $client;
+
+    public function __construct(Client $client = null)
     {
-        if ($jokes) {
-            $this->jokes = $jokes;
-        }
+        $this->client = $client ?: new Client();
     }
 
     public function random()
     {
-        return $this->jokes[array_rand($this->jokes)];
+    	$response = $this->client->get(self::API_ENDPOINT);
+
+    	$joke = json_decode($response->getBody()->getContents());
+
+    	return $joke->joke;
     }
 }
