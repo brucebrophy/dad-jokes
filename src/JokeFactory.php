@@ -17,10 +17,14 @@ class JokeFactory
 
     public function random()
     {
-        $response = $this->client->get(self::API_ENDPOINT);
+		$response = $this->client->get(self::API_ENDPOINT, [
+			'headers' => [
+				'Accept'     => 'application/json',
+			]
+		]);
 
-        $joke = json_decode($response->getBody()->getContents());
+		$joke = json_decode($response->getBody()->getContents());
 
-        return $joke->joke;
+		return $joke->joke;
     }
 }
