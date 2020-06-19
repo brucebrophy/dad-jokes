@@ -19,7 +19,7 @@ class JokeFactory
     {
         $response = $this->client->get(self::API_ENDPOINT, [
             'headers' => [
-                'Accept'     => 'application/json',
+                'Accept' => 'application/json',
             ],
         ]);
 
