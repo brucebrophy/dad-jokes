@@ -2,6 +2,7 @@
 
 namespace Brucebrophy\DadJokes;
 
+use Brucebrophy\DadJokes\Console\Joke;
 use Illuminate\Support\ServiceProvider;
 
 class DadJokeServiceProvider extends ServiceProvider
@@ -15,5 +16,10 @@ class DadJokeServiceProvider extends ServiceProvider
 
     public function boot()
     {
+		if ($this->app->runningInConsole()) {
+			$this->commands([
+				Joke::class,
+			]);
+		}
     }
 }
