@@ -16,10 +16,10 @@ class DadJokeServiceProvider extends ServiceProvider
 
     public function boot()
     {
-		if ($this->app->runningInConsole()) {
-			$this->commands([
-				Joke::class,
-			]);
-		}
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Joke::class,
+            ]);
+        }
     }
 }
