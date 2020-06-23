@@ -40,15 +40,15 @@ class LaravelTest extends TestCase
         $this->assertSame($joke.PHP_EOL, $output);
     }
 
-	public function testRouteCanBeAccessed()
-	{
-		Joke::shouldReceive('random')
-			->once()
-			->andReturn('A joke');
+    public function testRouteCanBeAccessed()
+    {
+        Joke::shouldReceive('random')
+            ->once()
+            ->andReturn('A joke');
 
-		$this->get('/joke')
-			->assertViewIs('dad-jokes::joke')
-			->assertViewHas('joke', 'A joke')
-			->assertStatus(200);
+        $this->get('/joke')
+            ->assertViewIs('dad-jokes::joke')
+            ->assertViewHas('joke', 'A joke')
+            ->assertStatus(200);
     }
 }

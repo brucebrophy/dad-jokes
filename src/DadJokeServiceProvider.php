@@ -3,9 +3,9 @@
 namespace Brucebrophy\DadJokes;
 
 use Brucebrophy\DadJokes\Console\Joke;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Route;
 use Brucebrophy\DadJokes\Http\Controllers\JokeController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class DadJokeServiceProvider extends ServiceProvider
 {
@@ -16,9 +16,9 @@ class DadJokeServiceProvider extends ServiceProvider
         });
 
         $this->mergeConfigFrom(
-        	__DIR__.'/../config/dad-jokes.php',
-			'dad-jokes'
-		);
+            __DIR__.'/../config/dad-jokes.php',
+            'dad-jokes'
+        );
     }
 
     public function boot()
@@ -32,12 +32,12 @@ class DadJokeServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'dad-jokes');
 
         $this->publishes([
-        	__DIR__.'/../resources/views' => resource_path('views/vendor/dad-jokes'),
-		], 'views');
+            __DIR__.'/../resources/views' => resource_path('views/vendor/dad-jokes'),
+        ], 'views');
 
-		$this->publishes([
-			__DIR__.'/../config/dad-jokes.php' => base_path('config/dad-jokes.php'),
-		], 'config');
+        $this->publishes([
+            __DIR__.'/../config/dad-jokes.php' => base_path('config/dad-jokes.php'),
+        ], 'config');
 
         Route::get(config('dad-jokes.route'), JokeController::class);
     }
