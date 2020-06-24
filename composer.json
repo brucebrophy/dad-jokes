@@ -1,6 +1,6 @@
 {
     "name": "brucebrophy/dad-jokes",
-    "description": "Create random dad jokes",
+    "description": "Get dad jokes in your PHP application",
     "type": "library",
     "license": "MIT",
     "authors": [
