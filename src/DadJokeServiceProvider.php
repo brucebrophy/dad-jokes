@@ -39,6 +39,12 @@ class DadJokeServiceProvider extends ServiceProvider
             __DIR__.'/../config/dad-jokes.php' => base_path('config/dad-jokes.php'),
         ], 'config');
 
+        if (! class_exists('CreateJokesTable')) {
+			$this->publishes([
+				__DIR__.'/../database/migrations/create_jokes_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_jokes_table.php'),
+			], 'migrations');
+		}
+
         Route::get(config('dad-jokes.route'), JokeController::class);
     }
 }
