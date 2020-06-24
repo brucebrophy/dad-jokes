@@ -4,20 +4,20 @@ namespace Brucebrophy\DadJokes\Tests;
 
 use Brucebrophy\DadJokes\DadJokeServiceProvider;
 use Brucebrophy\DadJokes\Facades\Joke as JokeFacade;
+use Brucebrophy\DadJokes\Models\Joke;
 use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase;
-use Brucebrophy\DadJokes\Models\Joke;
 
 class LaravelTest extends TestCase
 {
-	protected function getEnvironmentSetUp($app)
-	{
-		include_once __DIR__.'/../database/migrations/create_jokes_table.php.stub';
+    protected function getEnvironmentSetUp($app)
+    {
+        include_once __DIR__.'/../database/migrations/create_jokes_table.php.stub';
 
-		(new \CreateJokesTable)->up();
-	}
+        (new \CreateJokesTable)->up();
+    }
 
-	protected function getPackageProviders($app)
+    protected function getPackageProviders($app)
     {
         return [
             DadJokeServiceProvider::class,
@@ -37,7 +37,7 @@ class LaravelTest extends TestCase
 
         $joke = 'Why don’t skeletons ever go trick or treating? Because they have nobody to go with.';
 
-		JokeFacade::shouldReceive('random')
+        JokeFacade::shouldReceive('random')
             ->once()
             ->andReturn($joke);
 
@@ -50,7 +50,7 @@ class LaravelTest extends TestCase
 
     public function testRouteCanBeAccessed()
     {
-		JokeFacade::shouldReceive('random')
+        JokeFacade::shouldReceive('random')
             ->once()
             ->andReturn('A joke');
 
@@ -60,14 +60,14 @@ class LaravelTest extends TestCase
             ->assertStatus(200);
     }
 
-	public function testDatabaseCanBeAccessed()
-	{
-		$joke = new Joke;
-		$joke->joke = 'a funny joke';
-		$joke->save();
+    public function testDatabaseCanBeAccessed()
+    {
+        $joke = new Joke;
+        $joke->joke = 'a funny joke';
+        $joke->save();
 
-		$newJoke = Joke::find($joke->id);
+        $newJoke = Joke::find($joke->id);
 
-		$this->assertSame($newJoke->joke, 'a funny joke');
+        $this->assertSame($newJoke->joke, 'a funny joke');
     }
 }
